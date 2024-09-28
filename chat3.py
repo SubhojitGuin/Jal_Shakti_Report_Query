@@ -26,8 +26,8 @@ os.environ["LANGCHAIN_API_KEY"] = os.getenv("LANGCHAIN_API_KEY")
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 
 # Set up Streamlit
-st.set_page_config("Chat with multiple PDFs")
-st.header("Chat with multiple PDFs using GPT💁")
+st.set_page_config("Query Reports with JalSarthi")
+st.header("Chat with your Report with JalSarthi💁")
 
 # Function to extract text from PDF files
 def get_pdf_text(pdf_docs):
@@ -114,6 +114,7 @@ def user_input(user_question):
         
         for r in chain.stream({"context": docs, "question": user_question}):
             yield r
+           
     except Exception as e:
         st.error(f"Error processing your input: {str(e)}")
         logging.error(f"Error processing user input: {str(e)}")
