@@ -1,9 +1,14 @@
 from openai import OpenAI
 import streamlit as st
+import os
+from dotenv import load_dotenv
 
-st.title("ChatGPT-like clone")
+load_dotenv()
 
-client = OpenAI(api_key=st.secrets["OPENAI_API_KEY"])
+st.set_page_config("Chat with multiple PDFs")
+st.header("Chat with multiple PDFs using GPT💁")
+
+client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 
 if "openai_model" not in st.session_state:
     st.session_state["openai_model"] = "gpt-3.5-turbo"
@@ -29,5 +34,6 @@ if prompt := st.chat_input("What is up?"):
             ],
             stream=True,
         )
+        print(stream)
         response = st.write_stream(stream)
     st.session_state.messages.append({"role": "assistant", "content": response})
