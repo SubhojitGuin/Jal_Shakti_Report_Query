@@ -18,9 +18,9 @@ import logging
 
 # Load environment variables
 load_dotenv()
-os.environ['OPENAI_API_KEY'] = os.getenv("OPENAI_API_KEY")
-os.environ["LANGCHAIN_TRACING_V2"] = os.getenv("LANGCHAIN_TRACING_V2")
-os.environ["LANGCHAIN_API_KEY"] = os.getenv("LANGCHAIN_API_KEY")
+os.environ['OPENAI_API_KEY'] = st.secrets["general"]["OPENAI_API_KEY"]
+os.environ["LANGCHAIN_TRACING_V2"] = st.secrets["general"]["LANGCHAIN_TRACING_V2"]
+os.environ["LANGCHAIN_API_KEY"] = st.secrets["general"]["LANGCHAIN_API_KEY"]
 
 # Configure logging
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
